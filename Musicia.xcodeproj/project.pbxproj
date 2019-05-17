@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BA545226EFE2F001A5DC7 /* AppDelegate.swift */; };
-		183BA548226EFE2F001A5DC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BA547226EFE2F001A5DC7 /* ViewController.swift */; };
 		183BA54B226EFE2F001A5DC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183BA549226EFE2F001A5DC7 /* Main.storyboard */; };
 		183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 183BA54C226EFE2F001A5DC7 /* Musicia.xcdatamodeld */; };
 		183BA550226EFE30001A5DC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183BA54F226EFE30001A5DC7 /* Assets.xcassets */; };
 		183BA553226EFE30001A5DC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183BA551226EFE30001A5DC7 /* LaunchScreen.storyboard */; };
 		183BA55E226EFE30001A5DC7 /* MusiciaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BA55D226EFE30001A5DC7 /* MusiciaTests.swift */; };
+		18490304228F1E3D001CF937 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490303228F1E3D001CF937 /* SearchViewController.swift */; };
+		18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490305228F1E8A001CF937 /* PlaylistViewController.swift */; };
+		18490308228F2529001CF937 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490307228F2529001CF937 /* SearchService.swift */; };
+		1849030A228F31DE001CF937 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490309228F31DE001CF937 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +32,6 @@
 /* Begin PBXFileReference section */
 		183BA542226EFE2F001A5DC7 /* Musicia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musicia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183BA545226EFE2F001A5DC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		183BA547226EFE2F001A5DC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		183BA54A226EFE2F001A5DC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		183BA54D226EFE2F001A5DC7 /* Musicia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Musicia.xcdatamodel; sourceTree = "<group>"; };
 		183BA54F226EFE30001A5DC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +40,10 @@
 		183BA559226EFE30001A5DC7 /* MusiciaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusiciaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		183BA55D226EFE30001A5DC7 /* MusiciaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiciaTests.swift; sourceTree = "<group>"; };
 		183BA55F226EFE30001A5DC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18490303228F1E3D001CF937 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		18490305228F1E8A001CF937 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		18490307228F2529001CF937 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		18490309228F31DE001CF937 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				183BA545226EFE2F001A5DC7 /* AppDelegate.swift */,
-				183BA547226EFE2F001A5DC7 /* ViewController.swift */,
+				18490305228F1E8A001CF937 /* PlaylistViewController.swift */,
+				18490303228F1E3D001CF937 /* SearchViewController.swift */,
+				18490307228F2529001CF937 /* SearchService.swift */,
+				18490309228F31DE001CF937 /* Models.swift */,
 				183BA549226EFE2F001A5DC7 /* Main.storyboard */,
 				183BA54F226EFE30001A5DC7 /* Assets.xcassets */,
 				183BA551226EFE30001A5DC7 /* LaunchScreen.storyboard */,
@@ -200,8 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */,
 				183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */,
-				183BA548226EFE2F001A5DC7 /* ViewController.swift in Sources */,
+				18490308228F2529001CF937 /* SearchService.swift in Sources */,
+				1849030A228F31DE001CF937 /* Models.swift in Sources */,
+				18490304228F1E3D001CF937 /* SearchViewController.swift in Sources */,
 				183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +379,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ERADSJ284Z;
 				INFOPLIST_FILE = Musicia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,6 +398,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ERADSJ284Z;
 				INFOPLIST_FILE = Musicia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
