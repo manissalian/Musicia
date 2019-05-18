@@ -12,7 +12,12 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ConverterService.sharedInstance.search(query: "asot") { result, error in
+        ConverterService.sharedInstance.search(query: "asot") { result in
+            do {
+                let searchItem = try SearchItem(dictionary: result.items[0] as! [String : Any])
+                print(searchItem)
+
+            } catch {}
         }
     }
     
