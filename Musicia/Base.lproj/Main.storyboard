@@ -44,6 +44,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="S2K-fL-zTM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L8Q-BU-CW2">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -93,18 +94,34 @@
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ie-sy-T9p">
+                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="RgE-Wn-r5i" id="yHI-FH-Blb"/>
+                                    <outlet property="delegate" destination="RgE-Wn-r5i" id="bn5-V2-uMM"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Ie-sy-T9p" firstAttribute="top" secondItem="pem-wb-2Hd" secondAttribute="top" constant="56" id="0QQ-xA-Qfn"/>
                             <constraint firstItem="OVd-cC-0xv" firstAttribute="top" secondItem="pem-wb-2Hd" secondAttribute="top" constant="173" id="7a3-1h-qm0"/>
+                            <constraint firstItem="pem-wb-2Hd" firstAttribute="trailing" secondItem="6Ie-sy-T9p" secondAttribute="trailing" id="Eic-5t-H8b"/>
                             <constraint firstItem="OVd-cC-0xv" firstAttribute="centerX" secondItem="pem-wb-2Hd" secondAttribute="centerX" id="bfm-Ka-aQd"/>
+                            <constraint firstItem="6Ie-sy-T9p" firstAttribute="leading" secondItem="pem-wb-2Hd" secondAttribute="leading" id="dfN-ms-9AL"/>
                             <constraint firstItem="Lxp-hC-cF0" firstAttribute="leading" secondItem="pem-wb-2Hd" secondAttribute="leading" id="hTW-ec-1Ie"/>
                             <constraint firstItem="pem-wb-2Hd" firstAttribute="trailing" secondItem="Lxp-hC-cF0" secondAttribute="trailing" id="haI-i7-BWg"/>
+                            <constraint firstItem="pem-wb-2Hd" firstAttribute="bottom" secondItem="6Ie-sy-T9p" secondAttribute="bottom" id="lXU-Zc-VhU"/>
                             <constraint firstItem="Lxp-hC-cF0" firstAttribute="top" secondItem="pem-wb-2Hd" secondAttribute="top" id="nGA-PV-BT5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pem-wb-2Hd"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="oN8-KX-klw"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Lxp-hC-cF0" id="sxv-1U-ytg"/>
+                        <outlet property="tableView" destination="6Ie-sy-T9p" id="OZg-sT-4UI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wqq-O3-ddw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

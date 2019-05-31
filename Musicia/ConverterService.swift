@@ -12,12 +12,12 @@ class ConverterService {
     private init() {}
     static let sharedInstance = ConverterService()
     
-    private let searchUrl = "http://192.168.1.76:3000/search/youtube"
+    private let searchUrl = "http://192.168.1.68:3000/search/youtube"
     
     func search(query: String, completionHandler: @escaping (_ result: SearchResponse) -> Void) {
-        let url = URL(string: searchUrl + "?q=" + query)!
+        let urlString = searchUrl + "?q=" + query
         
-        request(url: url) { data, error in
+        request(urlString: urlString) { data, error in
             guard let data = data else { return }
             do {
                 if let JSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
@@ -28,7 +28,9 @@ class ConverterService {
         }
     }
     
-    private func request(url: URL, completionHandler: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+    private func request(urlString: String, completionHandler: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
+        
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             completionHandler(data, error)
         }
