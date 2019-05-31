@@ -95,4 +95,16 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 105
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        do {
+            let searchItem = try SearchItem(dictionary: items![indexPath.row] as! [String : Any])
+            
+            ConverterService.sharedInstance.convert(id: searchItem.id) { result in
+                ConverterService.sharedInstance.download(id: result) { data in
+                    print("downloaded data!")
+                }
+            }
+        } catch {}
+    }
 }
