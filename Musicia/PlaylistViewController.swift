@@ -40,6 +40,22 @@ class PlaylistViewController: UIViewController {
             print(error)
         }
     }
+    
+    func deleteItem(item: NSManagedObject) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        managedContext.delete(item)
+        
+        do {
+            try managedContext.save()
+            
+            fetchItems()
+            
+            tableView.reloadData()
+        } catch {}
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -56,5 +72,16 @@ extension PlaylistViewController: UITableViewDataSource {
         cell.textLabel?.text = item.value(forKeyPath: "title") as? String
         
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension PlaylistViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            self.deleteItem(item: self.items[indexPath.row])
+        })
+        
+        return [deleteAction]
     }
 }

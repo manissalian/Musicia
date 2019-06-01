@@ -109,18 +109,24 @@
                                     <outlet property="delegate" destination="RgE-Wn-r5i" id="bn5-V2-uMM"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IDC-PP-Lsp">
+                                <rect key="frame" x="170" y="315" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Ie-sy-T9p" firstAttribute="top" secondItem="pem-wb-2Hd" secondAttribute="top" constant="56" id="0QQ-xA-Qfn"/>
                             <constraint firstItem="OVd-cC-0xv" firstAttribute="top" secondItem="pem-wb-2Hd" secondAttribute="top" constant="173" id="7a3-1h-qm0"/>
                             <constraint firstItem="pem-wb-2Hd" firstAttribute="trailing" secondItem="6Ie-sy-T9p" secondAttribute="trailing" id="Eic-5t-H8b"/>
+                            <constraint firstItem="IDC-PP-Lsp" firstAttribute="centerX" secondItem="pem-wb-2Hd" secondAttribute="centerX" id="TyW-3b-FTX"/>
                             <constraint firstItem="OVd-cC-0xv" firstAttribute="centerX" secondItem="pem-wb-2Hd" secondAttribute="centerX" id="bfm-Ka-aQd"/>
                             <constraint firstItem="6Ie-sy-T9p" firstAttribute="leading" secondItem="pem-wb-2Hd" secondAttribute="leading" id="dfN-ms-9AL"/>
                             <constraint firstItem="Lxp-hC-cF0" firstAttribute="leading" secondItem="pem-wb-2Hd" secondAttribute="leading" id="hTW-ec-1Ie"/>
                             <constraint firstItem="pem-wb-2Hd" firstAttribute="trailing" secondItem="Lxp-hC-cF0" secondAttribute="trailing" id="haI-i7-BWg"/>
                             <constraint firstItem="pem-wb-2Hd" firstAttribute="bottom" secondItem="6Ie-sy-T9p" secondAttribute="bottom" id="lXU-Zc-VhU"/>
                             <constraint firstItem="Lxp-hC-cF0" firstAttribute="top" secondItem="pem-wb-2Hd" secondAttribute="top" id="nGA-PV-BT5"/>
+                            <constraint firstItem="IDC-PP-Lsp" firstAttribute="centerY" secondItem="pem-wb-2Hd" secondAttribute="centerY" id="xNM-Td-bdv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pem-wb-2Hd"/>
                     </view>
