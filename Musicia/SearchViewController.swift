@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -14,7 +15,7 @@ class SearchViewController: UIViewController {
     
     var items: Array<Any>? {
         didSet {
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
                 
                 self.tableView.isHidden = false
@@ -44,6 +45,24 @@ class SearchViewController: UIViewController {
     func search(q: String) {
         ConverterService.sharedInstance.search(query: q) { result in
             self.items = result.items
+        }
+    }
+    
+    func save(item: SearchItem, fileData: Data) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Music", in: managedContext)!
+        
+        let music = NSManagedObject(entity: entity, insertInto: managedContext)
+        music.setValue(item.id, forKeyPath: "id")
+        music.setValue(item.title, forKeyPath: "title")
+        music.setValue(fileData, forKeyPath: "file")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print(error)
         }
     }
 }
@@ -102,7 +121,9 @@ extension SearchViewController: UITableViewDelegate {
             
             ConverterService.sharedInstance.convert(id: searchItem.id) { result in
                 ConverterService.sharedInstance.download(id: result) { data in
-                    print("downloaded data!")
+                    DispatchQueue.main.async {
+                        self.save(item: searchItem, fileData: data)
+                    }
                 }
             }
         } catch {}
