@@ -84,4 +84,12 @@ extension PlaylistViewController: UITableViewDelegate {
         
         return [deleteAction]
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let playerVC = storyBoard.instantiateViewController(withIdentifier: "player")
+        
+        self.present(playerVC, animated: true) {
+        }
+    }
 }

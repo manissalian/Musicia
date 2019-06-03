@@ -20,6 +20,7 @@
 		18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490305228F1E8A001CF937 /* PlaylistViewController.swift */; };
 		18490308228F2529001CF937 /* ConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490307228F2529001CF937 /* ConverterService.swift */; };
 		1849030A228F31DE001CF937 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490309228F31DE001CF937 /* Models.swift */; };
+		18DFC72E22A55E8100749FF6 /* playerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DFC72D22A55E8100749FF6 /* playerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		18490305228F1E8A001CF937 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		18490307228F2529001CF937 /* ConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterService.swift; sourceTree = "<group>"; };
 		18490309228F31DE001CF937 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		18DFC72D22A55E8100749FF6 /* playerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				183BA545226EFE2F001A5DC7 /* AppDelegate.swift */,
 				18490305228F1E8A001CF937 /* PlaylistViewController.swift */,
 				18490303228F1E3D001CF937 /* SearchViewController.swift */,
+				18DFC72D22A55E8100749FF6 /* playerViewController.swift */,
 				18490307228F2529001CF937 /* ConverterService.swift */,
 				18490309228F31DE001CF937 /* Models.swift */,
 				1835975522A160AF00E8C64A /* utils.swift */,
@@ -226,6 +229,7 @@
 				18490304228F1E3D001CF937 /* SearchViewController.swift in Sources */,
 				183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */,
 				1835975222A1374000E8C64A /* searchTableViewCell.swift in Sources */,
+				18DFC72E22A55E8100749FF6 /* playerViewController.swift in Sources */,
 				1835975622A160AF00E8C64A /* utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

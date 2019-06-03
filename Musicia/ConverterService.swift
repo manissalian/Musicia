@@ -12,7 +12,7 @@ class ConverterService {
     private init() {}
     static let sharedInstance = ConverterService()
     
-    private let host = "http://192.168.1.69:3000"
+    private let host = "http://192.168.104.36:3000"
     private let searchPath = "/search/youtube"
     private let convertPath = "/convert/youtubeToMp3"
     private let downloadPath = "/download/mp3"

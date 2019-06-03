@@ -30,8 +30,6 @@ class SearchViewController: UIViewController {
         
         searchBar.delegate = self
         
-        activityIndicator.stopAnimating()
-        
         let nib = UINib.init(nibName: "searchTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "searchCell")
     }
