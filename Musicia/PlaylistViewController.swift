@@ -87,7 +87,15 @@ extension PlaylistViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let playerVC = storyBoard.instantiateViewController(withIdentifier: "player")
+        let playerVC = storyBoard.instantiateViewController(withIdentifier: "player") as! playerViewController
+        
+        let item = items[indexPath.row]
+        
+        guard let audioFile = item.value(forKeyPath: "file") as? Data else { return }
+        playerVC.audioFile = audioFile
+        
+        guard let audioTitle = item.value(forKeyPath: "title") as? String else { return }
+        playerVC.audioTitle = audioTitle
         
         self.present(playerVC, animated: true) {
         }
