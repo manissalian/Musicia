@@ -20,9 +20,6 @@ class playerViewController: UIViewController {
     @IBOutlet weak var volumeOnBtn: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     
-    var audioPlayer: AVAudioPlayer!
-    var audioFile: Data!
-    var audioTitle: String!
     var timer: Timer?
     
     var pause = false {
@@ -41,85 +38,78 @@ class playerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleLabel.text = audioTitle
+        titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
-            try AVAudioSession.sharedInstance().setActive(true)
+        durationLabel.text = secondsToTime(seconds: Int(PlaybackService.sharedInstance.getDuration() ?? 0))
 
-            audioPlayer = try AVAudioPlayer(data: audioFile)
-            audioPlayer.play()
-            
-            durationLabel.text = secondsToTime(seconds: Int(audioPlayer.duration))
-            
-            timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateCurrentTime), userInfo: nil, repeats: true)
-        } catch {}
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateCurrentTime), userInfo: nil, repeats: true)
     }
     
     @objc func updateCurrentTime() {
-        currentTimeLabel.text = secondsToTime(seconds: Int(audioPlayer.currentTime))
+        guard let currentTime = PlaybackService.sharedInstance.getCurrentTime(),
+            let duration = PlaybackService.sharedInstance.getDuration() else { return }
         
-        progressSlider.value = Float(audioPlayer.currentTime / audioPlayer.duration)
+        currentTimeLabel.text = secondsToTime(seconds: Int(currentTime))
+
+        progressSlider.value = Float(currentTime / duration)
     }
     
     @IBAction func playBtnPressed(_ sender: Any) {
-        audioPlayer.play()
+        PlaybackService.sharedInstance.play()
         pause = false
     }
     
     @IBAction func pauseBtnPressed(_ sender: Any) {
-        audioPlayer.pause()
+        PlaybackService.sharedInstance.pause()
         pause = true
     }
     
     @IBAction func stopBtnPressed(_ sender: Any) {
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-            
-            audioPlayer.stop()
-            audioPlayer = nil
-            
-            audioFile = nil
-            audioTitle = nil
-            
-            timer?.invalidate()
-            timer = nil
-            
-            self.dismiss(animated: true, completion: nil)
-        } catch {}
+        PlaybackService.sharedInstance.stop()
+        
+        timer?.invalidate()
+        timer = nil
+        
+        self.dismiss(animated: true)
     }
     
     @IBAction func replayBtnPressed(_ sender: Any) {
-        audioPlayer.currentTime = 0
-        audioPlayer.play()
+        PlaybackService.sharedInstance.replay()
         pause = false
     }
     
     @IBAction func progressSliderDraggedInside(_ sender: Any) {
-        audioPlayer.pause()
+        PlaybackService.sharedInstance.pause()
         pause = true
         
-        audioPlayer.currentTime = audioPlayer.duration * Double(progressSlider.value)
+        PlaybackService.sharedInstance.setCurrentTime(time: progressSlider.value)
     }
     
     @IBAction func progressSliderTouchedUpInside(_ sender: Any) {
-        audioPlayer.play()
+        PlaybackService.sharedInstance.play()
         pause = false
     }
     
     @IBAction func volumeOffBtnPressed(_ sender: Any) {
-        audioPlayer.volume = volumeSlider.value
+        PlaybackService.sharedInstance.setVolume(volume: volumeSlider.value)
         mute = false
     }
     
     @IBAction func volumeOnBtnPressed(_ sender: Any) {
-        audioPlayer.volume = 0
+        PlaybackService.sharedInstance.setVolume(volume: 0)
         mute = true
     }
     
     @IBAction func volumeSliderValueChanged(_ sender: Any) {
         if mute { return }
         
-        audioPlayer.volume = volumeSlider.value
+        PlaybackService.sharedInstance.setVolume(volume: volumeSlider.value)
+    }
+    
+    @IBAction func minimizeBtnPressed(_ sender: Any) {
+        timer?.invalidate()
+        timer = nil
+        
+        self.dismiss(animated: true)
     }
 }

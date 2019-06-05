@@ -92,12 +92,10 @@ extension PlaylistViewController: UITableViewDelegate {
         let item = items[indexPath.row]
         
         guard let audioFile = item.value(forKeyPath: "file") as? Data else { return }
-        playerVC.audioFile = audioFile
-        
         guard let audioTitle = item.value(forKeyPath: "title") as? String else { return }
-        playerVC.audioTitle = audioTitle
         
-        self.present(playerVC, animated: true) {
-        }
+        PlaybackService.sharedInstance.loadAudio(audioFile: audioFile, audioTitle: audioTitle)
+        
+        self.present(playerVC, animated: true)
     }
 }
