@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		182FC17722A7AFAD00446332 /* PlaybackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC17622A7AFAD00446332 /* PlaybackService.swift */; };
+		182FC17B22A7DD7A00446332 /* baseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC17A22A7DD7A00446332 /* baseViewController.swift */; };
+		182FC18422A7E3CA00446332 /* miniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */; };
+		182FC18522A7E3CA00446332 /* miniPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */; };
 		1835975222A1374000E8C64A /* searchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835975122A1374000E8C64A /* searchTableViewCell.swift */; };
 		1835975422A137C100E8C64A /* searchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1835975322A137C100E8C64A /* searchTableViewCell.xib */; };
 		1835975622A160AF00E8C64A /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835975522A160AF00E8C64A /* utils.swift */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		182FC17622A7AFAD00446332 /* PlaybackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackService.swift; sourceTree = "<group>"; };
+		182FC17A22A7DD7A00446332 /* baseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseViewController.swift; sourceTree = "<group>"; };
+		182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniPlayerViewController.swift; sourceTree = "<group>"; };
+		182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = miniPlayerViewController.xib; sourceTree = "<group>"; };
 		1835975122A1374000E8C64A /* searchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchTableViewCell.swift; sourceTree = "<group>"; };
 		1835975322A137C100E8C64A /* searchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchTableViewCell.xib; sourceTree = "<group>"; };
 		1835975522A160AF00E8C64A /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
@@ -96,9 +102,12 @@
 			isa = PBXGroup;
 			children = (
 				183BA545226EFE2F001A5DC7 /* AppDelegate.swift */,
+				182FC17A22A7DD7A00446332 /* baseViewController.swift */,
 				18490305228F1E8A001CF937 /* PlaylistViewController.swift */,
 				18490303228F1E3D001CF937 /* SearchViewController.swift */,
 				18DFC72D22A55E8100749FF6 /* playerViewController.swift */,
+				182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */,
+				182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */,
 				18490307228F2529001CF937 /* ConverterService.swift */,
 				182FC17622A7AFAD00446332 /* PlaybackService.swift */,
 				18490309228F31DE001CF937 /* Models.swift */,
@@ -207,6 +216,7 @@
 				183BA553226EFE30001A5DC7 /* LaunchScreen.storyboard in Resources */,
 				1835975422A137C100E8C64A /* searchTableViewCell.xib in Resources */,
 				183BA550226EFE30001A5DC7 /* Assets.xcassets in Resources */,
+				182FC18522A7E3CA00446332 /* miniPlayerViewController.xib in Resources */,
 				183BA54B226EFE2F001A5DC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182FC17722A7AFAD00446332 /* PlaybackService.swift in Sources */,
+				182FC17B22A7DD7A00446332 /* baseViewController.swift in Sources */,
 				18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */,
 				183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */,
 				18490308228F2529001CF937 /* ConverterService.swift in Sources */,
@@ -234,6 +245,7 @@
 				183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */,
 				1835975222A1374000E8C64A /* searchTableViewCell.swift in Sources */,
 				18DFC72E22A55E8100749FF6 /* playerViewController.swift in Sources */,
+				182FC18422A7E3CA00446332 /* miniPlayerViewController.swift in Sources */,
 				1835975622A160AF00E8C64A /* utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

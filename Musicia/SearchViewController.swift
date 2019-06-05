@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SearchViewController: UIViewController {
+class SearchViewController: baseViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -35,6 +35,8 @@ class SearchViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if items != nil { return }
         
         searchBar.becomeFirstResponder()

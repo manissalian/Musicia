@@ -41,6 +41,10 @@ class playerViewController: UIViewController {
         titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
         
         durationLabel.text = secondsToTime(seconds: Int(PlaybackService.sharedInstance.getDuration() ?? 0))
+        
+        pause = !PlaybackService.sharedInstance.isPlaying()
+        
+        volumeSlider.value = PlaybackService.sharedInstance.getVolume() ?? volumeSlider.value
 
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateCurrentTime), userInfo: nil, repeats: true)
     }

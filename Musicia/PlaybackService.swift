@@ -67,11 +67,23 @@ class PlaybackService {
         return audioPlayer?.duration
     }
     
+    func getVolume() -> Float? {
+        return audioPlayer?.volume
+    }
+    
     func setCurrentTime(time: Float) {
         audioPlayer?.currentTime = (audioPlayer?.duration ?? 0) * Double(time)
     }
     
     func setVolume(volume: Float) {
         audioPlayer?.volume = volume
+    }
+    
+    func isActive() -> Bool {
+        return audioPlayer != nil
+    }
+    
+    func isPlaying() -> Bool {
+        return audioPlayer?.isPlaying ?? false
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class PlaylistViewController: UIViewController {
+class PlaylistViewController: baseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var items: [NSManagedObject] = []

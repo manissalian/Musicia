@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="miniPlayerViewController" customModule="Musicia" customModuleProvider="target">
+            <connections>
+                <outlet property="pauseBtn" destination="Ofu-J7-2sA" id="H02-BC-db9"/>
+                <outlet property="playBtn" destination="lZr-XT-pY1" id="96f-YC-xg8"/>
+                <outlet property="titleLabel" destination="QxU-Dd-r4H" id="mvA-7Y-y56"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofu-J7-2sA">
+                    <rect key="frame" x="6" y="8" width="45" height="45"/>
+                    <state key="normal" backgroundImage="pause"/>
+                    <connections>
+                        <action selector="pauseBtnPressed:" destination="-1" eventType="touchUpInside" id="JyF-JP-Fa9"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZr-XT-pY1">
+                    <rect key="frame" x="6" y="8" width="45" height="45"/>
+                    <state key="normal" backgroundImage="play"/>
+                    <connections>
+                        <action selector="playBtnPressed:" destination="-1" eventType="touchUpInside" id="XOZ-P7-uAS"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Now Playing:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYU-Cg-hB9">
+                    <rect key="frame" x="59" y="5" width="99" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name - Song Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-Dd-r4H">
+                    <rect key="frame" x="59" y="23" width="274" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="274" id="FO5-WB-h1j"/>
+                        <constraint firstAttribute="height" constant="33" id="Ycf-IM-yc5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fYU-Cg-hB9" firstAttribute="leading" secondItem="lZr-XT-pY1" secondAttribute="trailing" constant="8" id="3Xx-Z0-fzx"/>
+                <constraint firstItem="QxU-Dd-r4H" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="59" id="9R2-4h-Qal"/>
+                <constraint firstItem="lZr-XT-pY1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="6" id="FJv-Rq-OGr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QxU-Dd-r4H" secondAttribute="trailing" constant="42" id="L8t-1k-gpr"/>
+                <constraint firstItem="Ofu-J7-2sA" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Nf6-JH-sc5"/>
+                <constraint firstItem="fYU-Cg-hB9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="b1e-57-Y0O"/>
+                <constraint firstItem="Ofu-J7-2sA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="6" id="dIf-JQ-wLY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="QxU-Dd-r4H" secondAttribute="bottom" constant="4" id="iyF-Ki-8ZZ"/>
+                <constraint firstItem="lZr-XT-pY1" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="vba-yx-XTR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="53.600000000000001" y="48.575712143928037"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pause" width="48" height="48"/>
+        <image name="play" width="48" height="48"/>
+    </resources>
+</document>
