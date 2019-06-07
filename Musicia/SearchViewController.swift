@@ -172,7 +172,16 @@ extension SearchViewController: UITableViewDelegate {
                 message: "Would you like to listen or save this audio?",
                 preferredStyle: .actionSheet)
             
-            alert.addAction(UIAlertAction(title: "Listen", style: .default, handler: { action in }))
+            alert.addAction(UIAlertAction(title: "Listen", style: .default, handler: { action in
+                do {
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    let previewVC = storyBoard.instantiateViewController(withIdentifier: "preview") as! previewViewController
+                    let searchItem = try SearchItem(dictionary: self.items![indexPath.row] as! [String : Any])
+                    previewVC.id = searchItem.id
+                    
+                    self.present(previewVC, animated: true)
+                } catch {}
+            }))
             
             alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
                 self.openSaveDialog()

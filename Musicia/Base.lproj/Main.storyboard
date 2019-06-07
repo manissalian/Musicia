@@ -318,6 +318,45 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="1629.5352323838083"/>
         </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="uHj-cq-BAs">
+            <objects>
+                <viewController storyboardIdentifier="preview" id="byT-Uu-t9D" customClass="previewViewController" customModule="Musicia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="csn-X0-Ped">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zx-h3-SKw">
+                                <rect key="frame" x="16" y="20" width="108" height="30"/>
+                                <state key="normal" title="Back to the app"/>
+                                <connections>
+                                    <action selector="backBtnPressed:" destination="byT-Uu-t9D" eventType="touchUpInside" id="paR-El-RG9"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENc-yi-9gq">
+                                <rect key="frame" x="0.0" y="58" width="375" height="609"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ENc-yi-9gq" firstAttribute="leading" secondItem="Mf1-xC-78D" secondAttribute="leading" id="G4R-Zk-Mfb"/>
+                            <constraint firstItem="ENc-yi-9gq" firstAttribute="top" secondItem="Mf1-xC-78D" secondAttribute="top" constant="38" id="ITR-d0-fdD"/>
+                            <constraint firstItem="Mf1-xC-78D" firstAttribute="bottom" secondItem="ENc-yi-9gq" secondAttribute="bottom" id="Pyb-tS-LIi"/>
+                            <constraint firstItem="7zx-h3-SKw" firstAttribute="top" secondItem="Mf1-xC-78D" secondAttribute="top" id="Wvl-25-OJK"/>
+                            <constraint firstItem="Mf1-xC-78D" firstAttribute="trailing" secondItem="ENc-yi-9gq" secondAttribute="trailing" id="bT2-XI-hWT"/>
+                            <constraint firstItem="7zx-h3-SKw" firstAttribute="leading" secondItem="Mf1-xC-78D" secondAttribute="leading" constant="16" id="q9o-LN-Q6A"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mf1-xC-78D"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="ENc-yi-9gq" id="PyI-Fb-OIO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z61-aY-xE4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="1629.5352323838083"/>
+        </scene>
         <!--Search Navigation-->
         <scene sceneID="IEC-QR-MWz">
             <objects>
