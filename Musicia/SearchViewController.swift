@@ -64,7 +64,7 @@ class SearchViewController: baseViewController {
         do {
             let searchItem = try SearchItem(dictionary: items![selectedIndex] as! [String : Any])
             ConverterService.sharedInstance.convert(id: searchItem.id) { result in
-                ConverterService.sharedInstance.download(id: result) { data in
+                ConverterService.sharedInstance.download(id: searchItem.id) { data in
                     DispatchQueue.main.async {
                         self.save(id: searchItem.id, title: self.titleInputValue, fileData: data)
                     }

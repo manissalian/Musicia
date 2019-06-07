@@ -39,6 +39,8 @@ class PlaybackService {
     }
     
     func stop() {
+        audioPlayer?.pause()
+        
         do {
             try AVAudioSession.sharedInstance().setActive(false)
             
