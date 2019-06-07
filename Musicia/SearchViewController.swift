@@ -99,6 +99,13 @@ class SearchViewController: baseViewController {
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "Audio title..."
+            
+            guard let selectedIndex = self.tableView.indexPathForSelectedRow?.row else { return }
+            
+            do {
+                let searchItem = try SearchItem(dictionary: self.items![selectedIndex] as! [String : Any])
+                textField.text = searchItem.title
+            } catch {}
         })
         
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
