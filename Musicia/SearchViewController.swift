@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class SearchViewController: baseViewController {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -51,44 +50,21 @@ class SearchViewController: baseViewController {
         
         ConverterService.sharedInstance.search(query: q) { result in
             self.items = result.items
-            
+
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
             }
         }
     }
     
-    func convertAndDownload() {
+    func convert() {
         guard let selectedIndex = self.tableView.indexPathForSelectedRow?.row else { return }
         
         do {
             let searchItem = try SearchItem(dictionary: items![selectedIndex] as! [String : Any])
-            ConverterService.sharedInstance.convert(id: searchItem.id) { result in
-                ConverterService.sharedInstance.download(id: searchItem.id) { data in
-                    DispatchQueue.main.async {
-                        self.save(id: searchItem.id, title: self.titleInputValue, fileData: data)
-                    }
-                }
-            }
+            
+            ConverterService.sharedInstance.convert(id: searchItem.id, title: titleInputValue)
         } catch {}
-    }
-    
-    func save(id: String, title: String, fileData: Data) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Music", in: managedContext)!
-        
-        let music = NSManagedObject(entity: entity, insertInto: managedContext)
-        music.setValue(id, forKeyPath: "id")
-        music.setValue(title, forKeyPath: "title")
-        music.setValue(fileData, forKeyPath: "file")
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print(error)
-        }
     }
     
     func openSaveDialog() {
@@ -113,7 +89,7 @@ class SearchViewController: baseViewController {
             if (title == "") { return }
             
             self.titleInputValue = title
-            self.convertAndDownload()
+            self.convert()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
