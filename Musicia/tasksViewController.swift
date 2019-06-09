@@ -8,7 +8,7 @@
 
 import UIKit
 
-class tasksViewController: UIViewController {
+class tasksViewController: baseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var items: Dictionary<String, Dictionary<String, Any>>? {
