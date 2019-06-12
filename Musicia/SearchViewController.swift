@@ -45,6 +45,10 @@ class SearchViewController: baseViewController {
         self.view.endEditing(true)
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
     func search(q: String) {
         activityIndicator.startAnimating()
         
@@ -105,7 +109,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
         
-        guard let q = searchBar.text else { return }
+        guard let q = searchBar.text, q != "" else { return }
         
         search(q: q)
     }
