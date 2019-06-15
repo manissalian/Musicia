@@ -39,14 +39,20 @@ class ConverterService: NSObject {
         }
     }
     
+    var savedCompletionHandler: (() -> Void)?
+    
     private override init() {
         super.init()
         
-        let urlConfig = URLSessionConfiguration.default
-        urlConfig.timeoutIntervalForRequest = 0
-        urlConfig.timeoutIntervalForResource = 0
-        convertSession = URLSession(configuration: urlConfig, delegate: self, delegateQueue: nil)
-        downloadSession = URLSession(configuration: urlConfig, delegate: self, delegateQueue: nil)
+        let convertConfig = URLSessionConfiguration.background(withIdentifier: "com.apple.Musicia.bg.convert")
+        convertConfig.timeoutIntervalForRequest = 0
+        convertConfig.timeoutIntervalForResource = 0
+        convertSession = URLSession(configuration: convertConfig, delegate: self, delegateQueue: nil)
+        
+        let downloadConfig = URLSessionConfiguration.background(withIdentifier: "com.apple.Musicia.bg.download")
+        downloadConfig.timeoutIntervalForRequest = 0
+        downloadConfig.timeoutIntervalForResource = 0
+        downloadSession = URLSession(configuration: downloadConfig, delegate: self, delegateQueue: nil)
     }
     
     func search(query: String, completionHandler: @escaping (_ result: SearchResponse) -> Void) {
@@ -67,7 +73,7 @@ class ConverterService: NSObject {
         let urlString = host + convertPath + "?id=" + id
         let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
         
-        let task = convertSession?.dataTask(with: url)
+        let task = convertSession?.downloadTask(with: url)
         tasks["convert_\(task!.taskIdentifier)"] = [
             "id": id,
             "type": "Convert",
@@ -129,41 +135,27 @@ class ConverterService: NSObject {
     }
 }
 
-extension ConverterService: URLSessionDataDelegate {
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
-                    completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        if (session == convertSession) {
-            let taskId = "convert_\(dataTask.taskIdentifier)"
-            
-            guard let id = tasks[taskId]?["id"] as? String,
-                let title = tasks[taskId]?["title"] as? String else { return }
-            
-            self.download(id: id, title: title)
-            
-            tasks.removeValue(forKey: taskId)
-            
-            NotificationCenter.default.post(name: ConverterService.conversionCompleted, object: nil)
-        }
-    }
-}
-
 extension ConverterService: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        if (session == downloadSession) {
-            let taskId = "download_\(downloadTask.taskIdentifier)"
-            
-            guard let id = tasks[taskId]?["id"] as? String,
-                let title = tasks[taskId]?["title"] as? String else { return }
-            
+        let taskPrefix = session == convertSession ? "convert_" : "download_"
+        let taskId = taskPrefix + String(downloadTask.taskIdentifier)
+        
+        guard let id = tasks[taskId]?["id"] as? String,
+            let title = tasks[taskId]?["title"] as? String else { return }
+        
+        if (session == convertSession) {
+            self.download(id: id, title: title)
+        } else if (session == downloadSession) {
             do {
                 let data = try Data(contentsOf: location)
                 self.save(id: id, title: title, fileData: data)
             } catch {}
-            
-            tasks.removeValue(forKey: taskId)
-            
-            NotificationCenter.default.post(name: ConverterService.downloadCompleted, object: nil)
         }
+        
+        tasks.removeValue(forKey: taskId)
+        
+        let notification = session == convertSession ? ConverterService.conversionCompleted : ConverterService.downloadCompleted
+        NotificationCenter.default.post(name: notification, object: nil)
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
@@ -175,5 +167,14 @@ extension ConverterService: URLSessionDownloadDelegate {
         ]
         
         NotificationCenter.default.post(name: ConverterService.downloadProgress, object: nil, userInfo: progressData)
+    }
+}
+
+extension ConverterService: URLSessionDelegate {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            self.savedCompletionHandler?()
+            self.savedCompletionHandler = nil
+        }
     }
 }
