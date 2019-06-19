@@ -8,14 +8,20 @@
 
 import Foundation
 import AVFoundation
+import MediaPlayer
 
-class PlaybackService {
-    private init() {}
+class PlaybackService: NSObject {
     static let sharedInstance = PlaybackService()
     
     private var audioPlayer: AVAudioPlayer?
     private var audioFile: Data?
     private var audioTitle: String?
+    
+    private override init() {
+        super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
     
     func loadAudio(audioFile: Data, audioTitle: String) {
         self.audioFile = audioFile
@@ -28,6 +34,28 @@ class PlaybackService {
             audioPlayer = try AVAudioPlayer(data: audioFile)
             audioPlayer!.play()
         } catch {}
+        
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            self.play()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            self.pause()
+            return .success
+        }
+        
+        commandCenter.nextTrackCommand.addTarget { [unowned self] event in
+            // add next functionality
+            return .success
+        }
+        
+        commandCenter.previousTrackCommand.addTarget { [unowned self] event in
+            // add previous functionality
+            return .success
+        }
     }
     
     func pause() {
@@ -87,5 +115,15 @@ class PlaybackService {
     
     func isPlaying() -> Bool {
         return audioPlayer?.isPlaying ?? false
+    }
+    
+    @objc private func didEnterBackground(notification: NSNotification) {
+        var nowPlayingInfo = [String : Any]()
+        
+        nowPlayingInfo[MPMediaItemPropertyTitle] = audioTitle
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = audioPlayer?.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = audioPlayer?.currentTime
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 }
