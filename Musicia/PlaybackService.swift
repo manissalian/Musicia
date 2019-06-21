@@ -20,6 +20,30 @@ class PlaybackService: NSObject {
     private override init() {
         super.init()
         
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            self.play()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            self.pause()
+            return .success
+        }
+        
+        commandCenter.nextTrackCommand.addTarget { [unowned self] event in
+            PlaylistManager.sharedInstance.jumpToNext()
+            self.updateNowPlayingInfo()
+            return .success
+        }
+        
+        commandCenter.previousTrackCommand.addTarget { [unowned self] event in
+            PlaylistManager.sharedInstance.jumpToPrevious()
+            self.updateNowPlayingInfo()
+            return .success
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
@@ -34,28 +58,6 @@ class PlaybackService: NSObject {
             audioPlayer = try AVAudioPlayer(data: audioFile)
             audioPlayer!.play()
         } catch {}
-        
-        let commandCenter = MPRemoteCommandCenter.shared()
-        
-        commandCenter.playCommand.addTarget { [unowned self] event in
-            self.play()
-            return .success
-        }
-        
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
-            self.pause()
-            return .success
-        }
-        
-        commandCenter.nextTrackCommand.addTarget { [unowned self] event in
-            // add next functionality
-            return .success
-        }
-        
-        commandCenter.previousTrackCommand.addTarget { [unowned self] event in
-            // add previous functionality
-            return .success
-        }
     }
     
     func pause() {
@@ -118,6 +120,10 @@ class PlaybackService: NSObject {
     }
     
     @objc private func didEnterBackground(notification: NSNotification) {
+        updateNowPlayingInfo()
+    }
+    
+    private func updateNowPlayingInfo() {
         var nowPlayingInfo = [String : Any]()
         
         nowPlayingInfo[MPMediaItemPropertyTitle] = audioTitle

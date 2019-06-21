@@ -13,9 +13,11 @@
 		182FC17B22A7DD7A00446332 /* baseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC17A22A7DD7A00446332 /* baseViewController.swift */; };
 		182FC18422A7E3CA00446332 /* miniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */; };
 		182FC18522A7E3CA00446332 /* miniPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */; };
+		182FE27222BAA615006410AF /* PlaylistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FE27122BAA615006410AF /* PlaylistManager.swift */; };
 		1835975222A1374000E8C64A /* searchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835975122A1374000E8C64A /* searchTableViewCell.swift */; };
 		1835975422A137C100E8C64A /* searchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1835975322A137C100E8C64A /* searchTableViewCell.xib */; };
 		1835975622A160AF00E8C64A /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835975522A160AF00E8C64A /* utils.swift */; };
+		18359F5522BC425F0011B35D /* CoreDataInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18359F5422BC425F0011B35D /* CoreDataInterfaces.swift */; };
 		183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BA545226EFE2F001A5DC7 /* AppDelegate.swift */; };
 		183BA54B226EFE2F001A5DC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183BA549226EFE2F001A5DC7 /* Main.storyboard */; };
 		183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 183BA54C226EFE2F001A5DC7 /* Musicia.xcdatamodeld */; };
@@ -48,9 +50,11 @@
 		182FC17A22A7DD7A00446332 /* baseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseViewController.swift; sourceTree = "<group>"; };
 		182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniPlayerViewController.swift; sourceTree = "<group>"; };
 		182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = miniPlayerViewController.xib; sourceTree = "<group>"; };
+		182FE27122BAA615006410AF /* PlaylistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
 		1835975122A1374000E8C64A /* searchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchTableViewCell.swift; sourceTree = "<group>"; };
 		1835975322A137C100E8C64A /* searchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchTableViewCell.xib; sourceTree = "<group>"; };
 		1835975522A160AF00E8C64A /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		18359F5422BC425F0011B35D /* CoreDataInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterfaces.swift; sourceTree = "<group>"; };
 		183BA542226EFE2F001A5DC7 /* Musicia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musicia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183BA545226EFE2F001A5DC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		183BA54A226EFE2F001A5DC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 				185638AD22AA86F50058AE3B /* previewViewController.swift */,
 				18490307228F2529001CF937 /* ConverterService.swift */,
 				182FC17622A7AFAD00446332 /* PlaybackService.swift */,
+				182FE27122BAA615006410AF /* PlaylistManager.swift */,
+				18359F5422BC425F0011B35D /* CoreDataInterfaces.swift */,
 				18490309228F31DE001CF937 /* Models.swift */,
 				1835975522A160AF00E8C64A /* utils.swift */,
 				183BA549226EFE2F001A5DC7 /* Main.storyboard */,
@@ -255,12 +261,14 @@
 			files = (
 				182FC17722A7AFAD00446332 /* PlaybackService.swift in Sources */,
 				185638AE22AA86F50058AE3B /* previewViewController.swift in Sources */,
+				182FE27222BAA615006410AF /* PlaylistManager.swift in Sources */,
 				182FC17B22A7DD7A00446332 /* baseViewController.swift in Sources */,
 				1855157622ABCF260007248C /* tasksViewController.swift in Sources */,
 				18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */,
 				183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */,
 				18490308228F2529001CF937 /* ConverterService.swift in Sources */,
 				1849030A228F31DE001CF937 /* Models.swift in Sources */,
+				18359F5522BC425F0011B35D /* CoreDataInterfaces.swift in Sources */,
 				18490304228F1E3D001CF937 /* SearchViewController.swift in Sources */,
 				182CA6B822AD171600B57A69 /* taskTableViewCell.swift in Sources */,
 				183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */,

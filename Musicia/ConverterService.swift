@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ConverterService: NSObject {
     static let sharedInstance = ConverterService()
@@ -113,26 +112,6 @@ class ConverterService: NSObject {
 
         task.resume()
     }
-    
-    private func save(id: String, title: String, fileData: Data) {
-        DispatchQueue.main.async {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let entity = NSEntityDescription.entity(forEntityName: "Music", in: managedContext)!
-            
-            let music = NSManagedObject(entity: entity, insertInto: managedContext)
-            music.setValue(id, forKeyPath: "id")
-            music.setValue(title, forKeyPath: "title")
-            music.setValue(fileData, forKeyPath: "file")
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-    }
 }
 
 extension ConverterService: URLSessionDownloadDelegate {
@@ -148,7 +127,9 @@ extension ConverterService: URLSessionDownloadDelegate {
         } else if (session == downloadSession) {
             do {
                 let data = try Data(contentsOf: location)
-                self.save(id: id, title: title, fileData: data)
+                DispatchQueue.main.async {
+                    CoreDataInterface().saveMusic(id: id, title: title, fileData: data)
+                }
             } catch {}
         }
         

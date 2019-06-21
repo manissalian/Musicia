@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import CoreData
 
 class PlaylistViewController: baseViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var items: [NSManagedObject] = []
+    var items: [Music]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,53 +22,24 @@ class PlaylistViewController: baseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        fetchItems()
+        items = CoreDataInterface().getAllMusic()
         
         tableView.reloadData()
-    }
-    
-    func fetchItems() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Music")
-        
-        do {
-            items = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-    }
-    
-    func deleteItem(item: NSManagedObject) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        managedContext.delete(item)
-        
-        do {
-            try managedContext.save()
-            
-            fetchItems()
-            
-            tableView.reloadData()
-        } catch {}
     }
 }
 
 // MARK: - UITableViewDataSource
 extension PlaylistViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath)
         
-        let item = items[indexPath.row]
+        let music = items![indexPath.row]
         
-        cell.textLabel?.text = item.value(forKeyPath: "title") as? String
+        cell.textLabel?.text = music.title
         
         return cell
     }
@@ -78,8 +48,12 @@ extension PlaylistViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PlaylistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
-            self.deleteItem(item: self.items[indexPath.row])
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete" , handler: { [unowned self](action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            CoreDataInterface().deleteMusic(music: self.items![indexPath.row])
+            
+            self.items = CoreDataInterface().getAllMusic()
+            
+            self.tableView.reloadData()
         })
         
         return [deleteAction]
@@ -89,12 +63,11 @@ extension PlaylistViewController: UITableViewDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let playerVC = storyBoard.instantiateViewController(withIdentifier: "player") as! playerViewController
         
-        let item = items[indexPath.row]
-        
-        guard let audioFile = item.value(forKeyPath: "file") as? Data else { return }
-        guard let audioTitle = item.value(forKeyPath: "title") as? String else { return }
-        
-        PlaybackService.sharedInstance.loadAudio(audioFile: audioFile, audioTitle: audioTitle)
+        var mainPlaylistItems: [String] = []
+        for music in items! {
+            mainPlaylistItems.append(music.id!)
+        }
+        PlaylistManager.sharedInstance.loadPlaylist(items: mainPlaylistItems, activeItemIndex: indexPath.row)
         
         self.present(playerVC, animated: true)
     }

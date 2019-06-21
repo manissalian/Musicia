@@ -52,7 +52,7 @@ class SearchViewController: baseViewController {
     func search(q: String) {
         activityIndicator.startAnimating()
         
-        ConverterService.sharedInstance.search(query: q) { result in
+        ConverterService.sharedInstance.search(query: q) { [unowned self] result in
             self.items = result.items
 
             DispatchQueue.main.async {
@@ -77,7 +77,7 @@ class SearchViewController: baseViewController {
             message: "Please enter a title for your audio",
             preferredStyle: .alert)
 
-        alert.addTextField(configurationHandler: { textField in
+        alert.addTextField(configurationHandler: { [unowned self] textField in
             textField.placeholder = "Audio title..."
             
             guard let selectedIndex = self.tableView.indexPathForSelectedRow?.row else { return }
@@ -88,7 +88,7 @@ class SearchViewController: baseViewController {
             } catch {}
         })
         
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [unowned self] action in
             guard let title = alert.textFields?.first?.text else { return }
             if (title == "") { return }
             
@@ -153,30 +153,28 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        do {
-            let alert = UIAlertController(
-                title: "Item Selected",
-                message: "Would you like to listen or save this audio?",
-                preferredStyle: .actionSheet)
-            
-            alert.addAction(UIAlertAction(title: "Listen", style: .default, handler: { action in
-                do {
-                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                    let previewVC = storyBoard.instantiateViewController(withIdentifier: "preview") as! previewViewController
-                    let searchItem = try SearchItem(dictionary: self.items![indexPath.row] as! [String : Any])
-                    previewVC.id = searchItem.id
-                    
-                    self.present(previewVC, animated: true)
-                } catch {}
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
-                self.openSaveDialog()
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true)
-        } catch {}
+        let alert = UIAlertController(
+            title: "Item Selected",
+            message: "Would you like to listen or save this audio?",
+            preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Listen", style: .default, handler: { [unowned self] action in
+            do {
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let previewVC = storyBoard.instantiateViewController(withIdentifier: "preview") as! previewViewController
+                let searchItem = try SearchItem(dictionary: self.items![indexPath.row] as! [String : Any])
+                previewVC.id = searchItem.id
+                
+                self.present(previewVC, animated: true)
+            } catch {}
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [unowned self] action in
+            self.openSaveDialog()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
     }
 }

@@ -47,6 +47,17 @@ class playerViewController: UIViewController {
         volumeSlider.value = PlaybackService.sharedInstance.getVolume() ?? volumeSlider.value
 
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateCurrentTime), userInfo: nil, repeats: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        timer?.invalidate()
+        timer = nil
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func updateCurrentTime() {
@@ -56,6 +67,12 @@ class playerViewController: UIViewController {
         currentTimeLabel.text = secondsToTime(seconds: Int(currentTime))
 
         progressSlider.value = Float(currentTime / duration)
+    }
+    
+    @objc private func didBecomeActive(notification: NSNotification) {
+        titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
+        
+        durationLabel.text = secondsToTime(seconds: Int(PlaybackService.sharedInstance.getDuration() ?? 0))
     }
     
     @IBAction func playBtnPressed(_ sender: Any) {
@@ -70,9 +87,6 @@ class playerViewController: UIViewController {
     
     @IBAction func stopBtnPressed(_ sender: Any) {
         PlaybackService.sharedInstance.stop()
-        
-        timer?.invalidate()
-        timer = nil
         
         self.dismiss(animated: true)
     }
@@ -111,9 +125,22 @@ class playerViewController: UIViewController {
     }
     
     @IBAction func minimizeBtnPressed(_ sender: Any) {
-        timer?.invalidate()
-        timer = nil
-        
         self.dismiss(animated: true)
+    }
+    
+    @IBAction func previousBtnPressed(_ sender: Any) {
+        PlaylistManager.sharedInstance.jumpToPrevious()
+        
+        titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
+        
+        durationLabel.text = secondsToTime(seconds: Int(PlaybackService.sharedInstance.getDuration() ?? 0))
+    }
+    
+    @IBAction func nextBtnPressed(_ sender: Any) {
+        PlaylistManager.sharedInstance.jumpToNext()
+        
+        titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
+        
+        durationLabel.text = secondsToTime(seconds: Int(PlaybackService.sharedInstance.getDuration() ?? 0))
     }
 }
