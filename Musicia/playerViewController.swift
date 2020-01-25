@@ -73,6 +73,8 @@ class playerViewController: UIViewController {
         titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
         
         durationLabel.text = secondsToTime(seconds: Int(PlaybackService.sharedInstance.getDuration() ?? 0))
+        
+        pause = !PlaybackService.sharedInstance.isPlaying()
     }
     
     @IBAction func playBtnPressed(_ sender: Any) {

@@ -32,15 +32,15 @@ class PlaybackService: NSObject {
             return .success
         }
         
-        commandCenter.nextTrackCommand.addTarget { [unowned self] event in
+        commandCenter.nextTrackCommand.addTarget { event in
             PlaylistManager.sharedInstance.jumpToNext()
-            self.updateNowPlayingInfo()
+            
             return .success
         }
         
-        commandCenter.previousTrackCommand.addTarget { [unowned self] event in
+        commandCenter.previousTrackCommand.addTarget { event in
             PlaylistManager.sharedInstance.jumpToPrevious()
-            self.updateNowPlayingInfo()
+            
             return .success
         }
         
@@ -56,7 +56,8 @@ class PlaybackService: NSObject {
             try AVAudioSession.sharedInstance().setActive(true)
             
             audioPlayer = try AVAudioPlayer(data: audioFile)
-            audioPlayer!.play()
+            audioPlayer!.delegate = PlaylistManager.sharedInstance
+            play()
         } catch {}
     }
     
@@ -65,6 +66,8 @@ class PlaybackService: NSObject {
     }
     
     func play() {
+        updateNowPlayingInfo()
+        
         audioPlayer?.play()
     }
     

@@ -11,6 +11,59 @@ import UIKit
 import CoreData
 
 struct CoreDataInterface {
+    private func makeMainPlaylist() {
+        // creates a unique playlist with type set to 'main'
+        // the playlist is responsible of displaying all the music from the users library
+        // only succeeds the first time the app is launched
+        // it's the only playlist that has no items array
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchMainRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Playlist")
+        let predicate = NSPredicate(format: "type = %@", argumentArray: ["main"])
+        fetchMainRequest.predicate = predicate
+        do {
+            let result = try managedContext.fetch(fetchMainRequest)
+            
+            if (result.count > 0) { return }
+            
+            let mainPlaylist = Playlist(context: managedContext)
+            mainPlaylist.title = "All Music"
+            mainPlaylist.type = "main"
+        } catch {}
+    }
+    
+    func getAllPlaylists() -> [Playlist]? {
+        makeMainPlaylist()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Playlist")
+        
+        do {
+            let items = try managedContext.fetch(fetchRequest) as? [Playlist]
+            
+            return items
+        } catch {
+            return nil
+        }
+    }
+    
+    func deletePlaylist(playlist: Playlist) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            playlist.type != "main" else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        managedContext.delete(playlist)
+        
+        do {
+            try managedContext.save()
+        } catch {}
+    }
+    
     func getAllMusic() -> [Music]? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         

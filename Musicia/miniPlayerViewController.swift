@@ -39,6 +39,14 @@ class miniPlayerViewController: UIViewController {
         titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
         
         pause = !PlaybackService.sharedInstance.isPlaying()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func pauseBtnPressed(_ sender: Any) {
@@ -56,5 +64,11 @@ class miniPlayerViewController: UIViewController {
         let playerVC = storyBoard.instantiateViewController(withIdentifier: "player") as! playerViewController
         
         parentVC?.present(playerVC, animated: true)
+    }
+    
+    @objc private func didBecomeActive(notification: NSNotification) {
+        titleLabel.text = PlaybackService.sharedInstance.getAudioTitle()
+        
+        pause = !PlaybackService.sharedInstance.isPlaying()
     }
 }

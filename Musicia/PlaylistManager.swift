@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class PlaylistManager: NSObject {
     static let sharedInstance = PlaylistManager()
@@ -44,5 +45,16 @@ class PlaylistManager: NSObject {
             let audioTitle = music?.title else { return }
         
         PlaybackService.sharedInstance.loadAudio(audioFile: audioFile, audioTitle: audioTitle)
+    }
+}
+
+// MARK: - AVAudioPlayerDelegate
+extension PlaylistManager: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if activeItemIndex == nil || items == nil { return }
+        
+        if activeItemIndex! == items!.count - 1 { return }
+        
+        jumpToNext()
     }
 }
