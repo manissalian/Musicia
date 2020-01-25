@@ -69,6 +69,7 @@ struct CoreDataInterface {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Music")
+        fetchRequest.propertiesToFetch = ["id", "title"]
         
         do {
             let items = try managedContext.fetch(fetchRequest) as? [Music]
