@@ -61,13 +61,13 @@ class SearchViewController: baseViewController {
         }
     }
     
-    func convert() {
+    func save() {
         guard let selectedIndex = self.tableView.indexPathForSelectedRow?.row else { return }
         
         do {
             let searchItem = try SearchItem(dictionary: items![selectedIndex] as! [String : Any])
-            
-            ConverterService.sharedInstance.convert(id: searchItem.id, title: titleInputValue)
+
+            ConverterService.sharedInstance.stream(id: searchItem.id, title: titleInputValue)
         } catch {}
     }
     
@@ -84,7 +84,7 @@ class SearchViewController: baseViewController {
             
             do {
                 let searchItem = try SearchItem(dictionary: self.items![selectedIndex] as! [String : Any])
-                textField.text = searchItem.title
+                textField.text = String(htmlEncodedString: searchItem.title)
             } catch {}
         })
         
@@ -93,7 +93,7 @@ class SearchViewController: baseViewController {
             if (title == "") { return }
             
             self.titleInputValue = title
-            self.convert()
+            self.save()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -127,7 +127,7 @@ extension SearchViewController: UITableViewDataSource {
         do {
             let searchItem = try SearchItem(dictionary: items![indexPath.row] as! [String : Any])
             
-            cell.cellTitle.text = searchItem.title
+            cell.cellTitle.text = String(htmlEncodedString: searchItem.title)
             
             cell.cellDuration.text = secondsToTime(seconds: searchItem.duration)
             
