@@ -13,7 +13,7 @@ class miniPlayerViewController: UIViewController {
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var parentVC: UIViewController?
+    weak var parentVC: UIViewController?
     
     var pause = false {
         didSet {
