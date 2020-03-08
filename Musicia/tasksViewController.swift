@@ -56,6 +56,10 @@ extension tasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! taskTableViewCell
+        
+        if (indexPath.row >= items.count) {
+            return cell
+        }
 
         let item = items[indexPath.row]
 

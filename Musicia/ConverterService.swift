@@ -16,8 +16,13 @@ class ConverterService: NSObject {
     private let host = "https://yerkoh.herokuapp.com"
     private let searchPath = "/search/youtube"
     private let streamPath = "/convert/youtubeToMp3/stream"
+    private let progressPath = "/convert/progress"
 
     private var streamSession: URLSession?
+    private var progressSession: URLSession?
+    
+    private var conversionId = 0
+    private var deviceId = UIDevice.current.identifierForVendor?.uuidString
 
     private(set) var tasks: [StreamTask] = [] {
         didSet {
@@ -44,6 +49,9 @@ class ConverterService: NSObject {
 
         let streamConfig = makeConfig(sessionId: "com.apple.Musicia.bg.stream")
         streamSession = URLSession(configuration: streamConfig, delegate: self, delegateQueue: nil)
+        
+        let progressConfig = makeConfig(sessionId: "com.apple.Musicia.bg.progress")
+        progressSession = URLSession(configuration: progressConfig, delegate: self, delegateQueue: nil)
     }
 
     func search(query: String, completionHandler: @escaping (_ result: SearchResponse) -> Void) {
@@ -68,8 +76,9 @@ class ConverterService: NSObject {
     }
     
     func stream(id: String, title: String) {
-        let urlString = host + streamPath + "?id=" + id
-        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
+        conversionId += 1
+        let urlString = host + streamPath + "?id=" + id + "&conversionId=" + deviceId! + "\(conversionId)"
+        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)!
         
         guard let streamSession = streamSession else { return }
 
@@ -78,10 +87,24 @@ class ConverterService: NSObject {
         let streamTask = StreamTask(id: taskId, videoId: id, title: title)
         tasks.append(streamTask)
         task.resume()
+        
+        attachProgressTask(id: id, title: title, streamTask: streamTask)
+    }
+    
+    func attachProgressTask(id: String, title: String, streamTask: StreamTask) {
+        let urlString = host + progressPath + "?conversionId=" + deviceId! + "\(conversionId)"
+        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)!
+
+        guard let progressSession = progressSession else { return }
+
+        let task = progressSession.dataTask(with: url)
+        let taskId = getFullTaskId(progressSession, task)
+        streamTask.progressTaskId = taskId
+        task.resume()
     }
 
     private func request(urlString: String, completionHandler: @escaping (_ data: Data?, _ error: Error?) -> Void) {
-        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!)!
+        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)!
         
         let urlConfig = URLSessionConfiguration.default
         urlConfig.timeoutIntervalForRequest = 0
@@ -114,54 +137,50 @@ class ConverterService: NSObject {
 extension ConverterService: URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         let taskId = getFullTaskId(session, dataTask)
-        guard let streamTask = tasks.first(where: { $0.id == taskId }) else { return }
 
-        do {
-            if let JSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                let streamProgressResponse = StreamProgressResponse(json: JSON) {
+        if (session == streamSession) {
+            guard let streamTask = tasks.first(where: { $0.id == taskId }) else { return }
 
-                streamTask.progress = streamProgressResponse.progress
-                NotificationCenter.default.post(name: ConverterService.downloadProgress, object: nil)
-
-                return
+            if (streamTask.data == nil) {
+                streamTask.data = data
+            } else {
+                streamTask.data!.append(data)
             }
-        } catch {}
+        } else if (session == progressSession) {
+            guard let streamTask = tasks.first(where: { $0.progressTaskId == taskId }) else { return }
 
-        do {
-            if let JSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                let streamProgressResponse = StreamSuccessResponse(json: JSON),
-                let data = streamTask.data,
-                streamProgressResponse.success {
-                if (session == streamSession) {
-                    CoreDataInterface().saveMusic(id: streamTask.videoId, title: streamTask.title, fileData: data)
+            do {
+                if let JSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let streamProgressResponse = StreamProgressResponse(json: JSON) {
+                        streamTask.progress = streamProgressResponse.progress
+
+                        NotificationCenter.default.post(name: ConverterService.downloadProgress, object: nil)
+                    } else if let streamProgressResponse = StreamSuccessResponse(json: JSON),
+                        let data = streamTask.data,
+                        streamProgressResponse.success {
+                        CoreDataInterface().saveMusic(id: streamTask.videoId, title: streamTask.title, fileData: data)
+
+                        tasks = tasks.filter { $0.id != streamTask.id }
+
+                        NotificationCenter.default.post(name: ConverterService.downloadCompleted, object: nil)
+
+                        let alertController = UIAlertController(
+                            title: "Download Success",
+                            message: "\(streamTask.title) downloaded successfully!",
+                            preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+
+                        DispatchQueue.main.async {
+                            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                                let tabBarCont = appDelegate.window?.rootViewController as? UITabBarController,
+                                let selectedNavVC = tabBarCont.selectedViewController as? UINavigationController,
+                                let selectedVC = selectedNavVC.topViewController else { return }
+
+                            selectedVC.present(alertController, animated: true)
+                        }
+                    }
                 }
-
-                tasks = tasks.filter { $0.id != streamTask.id }
-                NotificationCenter.default.post(name: ConverterService.downloadCompleted, object: nil)
-                
-                let alertController = UIAlertController(
-                    title: "Download Success",
-                    message: "\(streamTask.title) downloaded successfully!",
-                    preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-
-                DispatchQueue.main.async {
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-                        let tabBarCont = appDelegate.window?.rootViewController as? UITabBarController,
-                        let selectedNavVC = tabBarCont.selectedViewController as? UINavigationController,
-                        let selectedVC = selectedNavVC.topViewController else { return }
-
-                    selectedVC.present(alertController, animated: true)
-                }
-
-                return
-            }
-        } catch {}
-
-        if (streamTask.data == nil) {
-            streamTask.data = data
-        } else {
-            streamTask.data!.append(data)
+            } catch {}
         }
     }
     

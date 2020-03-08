@@ -58,6 +58,7 @@ class StreamTask {
     var title: String
     var data: Data?
     var progress: String = "0%"
+    var progressTaskId: String?
     
     init (id: String, videoId: String, title: String) {
         self.id = id

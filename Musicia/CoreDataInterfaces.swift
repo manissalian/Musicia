@@ -99,20 +99,22 @@ struct CoreDataInterface {
     }
     
     func saveMusic(id: String, title: String, fileData: Data) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Music", in: managedContext)!
-        
-        let music = NSManagedObject(entity: entity, insertInto: managedContext) as! Music
-        music.id = id
-        music.title = title
-        music.file = fileData
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print(error)
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Music", in: managedContext)!
+            
+            let music = NSManagedObject(entity: entity, insertInto: managedContext) as! Music
+            music.id = id
+            music.title = title
+            music.file = fileData
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print(error)
+            }
         }
     }
     
