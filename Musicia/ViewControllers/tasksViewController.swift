@@ -24,27 +24,27 @@ class tasksViewController: baseViewController {
         let nib = UINib.init(nibName: "taskTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "taskCell")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(downloadProgress(notification:)), name: ConverterService.downloadProgress, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(downloadProgress(notification:)), name: ConvertService.downloadProgress, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(downloadCompleted(notification:)), name: ConverterService.downloadCompleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(downloadCompleted(notification:)), name: ConvertService.downloadCompleted, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        items = ConverterService.sharedInstance.tasks
+        items = ConvertService.sharedInstance.tasks
     }
     
     @objc func conversionCompleted(notification: NSNotification) {
-        items = ConverterService.sharedInstance.tasks
+        items = ConvertService.sharedInstance.tasks
     }
     
     @objc func downloadProgress(notification: NSNotification) {
-        items = ConverterService.sharedInstance.tasks
+        items = ConvertService.sharedInstance.tasks
     }
     
     @objc func downloadCompleted(notification: NSNotification) {
-        items = ConverterService.sharedInstance.tasks
+        items = ConvertService.sharedInstance.tasks
     }
 }
 

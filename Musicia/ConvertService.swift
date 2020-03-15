@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ConverterService: NSObject {
-    static let sharedInstance = ConverterService()
+class ConvertService: NSObject {
+    static let sharedInstance = ConvertService()
     static let downloadProgress = Notification.Name("downloadProgress")
     static let downloadCompleted = Notification.Name("downloadCompleted")
 
-    private let host = "https://yerkoh.herokuapp.com"
-    private let searchPath = "/search/youtube"
     private let streamPath = "/convert/youtubeToMp3/stream"
     private let progressPath = "/convert/progress"
 
@@ -53,27 +51,6 @@ class ConverterService: NSObject {
         let progressConfig = makeConfig(sessionId: "com.apple.Musicia.bg.progress")
         progressSession = URLSession(configuration: progressConfig, delegate: self, delegateQueue: nil)
     }
-
-    func search(query: String, completionHandler: @escaping (_ result: SearchResponse) -> Void) {
-        let urlString = host + searchPath + "?q=" + query
-
-        request(urlString: urlString) { data, error in
-            guard let data = data else {
-                NotificationCenter.default.post(name: ErrorManager.errorNotification, object: nil, userInfo: [
-                    "title": "Search Error",
-                    "message": "An error occured while searching for \(query)"
-                ])
-
-                return
-            }
-            do {
-                if let JSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                    let searchResponse = SearchResponse(json: JSON) {
-                    completionHandler(searchResponse)
-                }
-            } catch {}
-        }
-    }
     
     func stream(id: String, title: String) {
         conversionId += 1
@@ -102,21 +79,6 @@ class ConverterService: NSObject {
         streamTask.progressTaskId = taskId
         task.resume()
     }
-
-    private func request(urlString: String, completionHandler: @escaping (_ data: Data?, _ error: Error?) -> Void) {
-        let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)!
-        
-        let urlConfig = URLSessionConfiguration.default
-        urlConfig.timeoutIntervalForRequest = 0
-        urlConfig.timeoutIntervalForResource = 0
-        let session = URLSession(configuration: urlConfig)
-        
-        let task = session.dataTask(with: url) {(data, response, error) in
-            completionHandler(data, error)
-        }
-
-        task.resume()
-    }
     
     private func makeConfig(sessionId: String) -> URLSessionConfiguration {
         let config = URLSessionConfiguration.background(withIdentifier: sessionId)
@@ -134,7 +96,7 @@ class ConverterService: NSObject {
     }
 }
 
-extension ConverterService: URLSessionDataDelegate {
+extension ConvertService: URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         let taskId = getFullTaskId(session, dataTask)
 
@@ -154,7 +116,7 @@ extension ConverterService: URLSessionDataDelegate {
                     if let streamProgressResponse = StreamProgressResponse(json: JSON) {
                         streamTask.progress = streamProgressResponse.progress
 
-                        NotificationCenter.default.post(name: ConverterService.downloadProgress, object: nil)
+                        NotificationCenter.default.post(name: ConvertService.downloadProgress, object: nil)
                     } else if let streamProgressResponse = StreamSuccessResponse(json: JSON),
                         let data = streamTask.data,
                         streamProgressResponse.success {
@@ -162,7 +124,7 @@ extension ConverterService: URLSessionDataDelegate {
 
                         tasks = tasks.filter { $0.id != streamTask.id }
 
-                        NotificationCenter.default.post(name: ConverterService.downloadCompleted, object: nil)
+                        NotificationCenter.default.post(name: ConvertService.downloadCompleted, object: nil)
 
                         let alertController = UIAlertController(
                             title: "Download Success",
@@ -204,7 +166,7 @@ extension ConverterService: URLSessionDataDelegate {
     }
 }
 
-extension ConverterService: URLSessionDelegate {
+extension ConvertService: URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         DispatchQueue.main.async {
             self.savedCompletionHandler?()

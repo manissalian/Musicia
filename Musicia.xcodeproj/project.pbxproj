@@ -7,32 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		182CA6B822AD171600B57A69 /* taskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182CA6B622AD171600B57A69 /* taskTableViewCell.swift */; };
-		182CA6B922AD171600B57A69 /* taskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182CA6B722AD171600B57A69 /* taskTableViewCell.xib */; };
 		182FC17722A7AFAD00446332 /* PlaybackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC17622A7AFAD00446332 /* PlaybackService.swift */; };
-		182FC17B22A7DD7A00446332 /* baseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC17A22A7DD7A00446332 /* baseViewController.swift */; };
-		182FC18422A7E3CA00446332 /* miniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */; };
-		182FC18522A7E3CA00446332 /* miniPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */; };
 		182FE27222BAA615006410AF /* PlaylistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FE27122BAA615006410AF /* PlaylistManager.swift */; };
-		182FF49322BE9E3A0063BF97 /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF49222BE9E3A0063BF97 /* PlaylistsViewController.swift */; };
 		183077E623E74AB8000FD2C3 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183077E523E74AB8000FD2C3 /* ErrorManager.swift */; };
-		1835975222A1374000E8C64A /* searchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835975122A1374000E8C64A /* searchTableViewCell.swift */; };
-		1835975422A137C100E8C64A /* searchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1835975322A137C100E8C64A /* searchTableViewCell.xib */; };
 		1835975622A160AF00E8C64A /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835975522A160AF00E8C64A /* utils.swift */; };
-		18359F5522BC425F0011B35D /* CoreDataInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18359F5422BC425F0011B35D /* CoreDataInterfaces.swift */; };
+		18359F5522BC425F0011B35D /* CoreDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18359F5422BC425F0011B35D /* CoreDataInterface.swift */; };
 		183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BA545226EFE2F001A5DC7 /* AppDelegate.swift */; };
 		183BA54B226EFE2F001A5DC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183BA549226EFE2F001A5DC7 /* Main.storyboard */; };
 		183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 183BA54C226EFE2F001A5DC7 /* Musicia.xcdatamodeld */; };
 		183BA550226EFE30001A5DC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183BA54F226EFE30001A5DC7 /* Assets.xcassets */; };
 		183BA553226EFE30001A5DC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183BA551226EFE30001A5DC7 /* LaunchScreen.storyboard */; };
 		183BA55E226EFE30001A5DC7 /* MusiciaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183BA55D226EFE30001A5DC7 /* MusiciaTests.swift */; };
-		18490304228F1E3D001CF937 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490303228F1E3D001CF937 /* SearchViewController.swift */; };
-		18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490305228F1E8A001CF937 /* PlaylistViewController.swift */; };
-		18490308228F2529001CF937 /* ConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490307228F2529001CF937 /* ConverterService.swift */; };
-		1849030A228F31DE001CF937 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490309228F31DE001CF937 /* Models.swift */; };
-		1855157622ABCF260007248C /* tasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855157522ABCF260007248C /* tasksViewController.swift */; };
-		185638AE22AA86F50058AE3B /* previewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185638AD22AA86F50058AE3B /* previewViewController.swift */; };
-		18DFC72E22A55E8100749FF6 /* playerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DFC72D22A55E8100749FF6 /* playerViewController.swift */; };
+		18490308228F2529001CF937 /* ConvertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18490307228F2529001CF937 /* ConvertService.swift */; };
+		1885739C241E5D5100EA7FB0 /* baseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885739B241E5D5100EA7FB0 /* baseViewController.swift */; };
+		188573A3241E5DDE00EA7FB0 /* playerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885739D241E5DDE00EA7FB0 /* playerViewController.swift */; };
+		188573A4241E5DDE00EA7FB0 /* previewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885739E241E5DDE00EA7FB0 /* previewViewController.swift */; };
+		188573A5241E5DDE00EA7FB0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1885739F241E5DDE00EA7FB0 /* SearchViewController.swift */; };
+		188573A6241E5DDE00EA7FB0 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573A0241E5DDE00EA7FB0 /* PlaylistViewController.swift */; };
+		188573A7241E5DDE00EA7FB0 /* tasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573A1241E5DDE00EA7FB0 /* tasksViewController.swift */; };
+		188573A8241E5DDE00EA7FB0 /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573A2241E5DDE00EA7FB0 /* PlaylistsViewController.swift */; };
+		188573AC241E5E7F00EA7FB0 /* miniPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188573AA241E5E7F00EA7FB0 /* miniPlayerViewController.xib */; };
+		188573AD241E5E7F00EA7FB0 /* miniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573AB241E5E7F00EA7FB0 /* miniPlayerViewController.swift */; };
+		188573B5241E5F8A00EA7FB0 /* searchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188573B0241E5F8A00EA7FB0 /* searchTableViewCell.xib */; };
+		188573B6241E5F8A00EA7FB0 /* searchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573B1241E5F8A00EA7FB0 /* searchTableViewCell.swift */; };
+		188573B7241E5F8A00EA7FB0 /* taskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188573B3241E5F8A00EA7FB0 /* taskTableViewCell.xib */; };
+		188573B8241E5F8A00EA7FB0 /* taskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573B4241E5F8A00EA7FB0 /* taskTableViewCell.swift */; };
+		188573BB241E61E000EA7FB0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573BA241E61E000EA7FB0 /* Stream.swift */; };
+		188573BD241E61F600EA7FB0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573BC241E61F600EA7FB0 /* Search.swift */; };
+		188573BF241E635900EA7FB0 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573BE241E635900EA7FB0 /* SearchService.swift */; };
+		188573C1241E642C00EA7FB0 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188573C0241E642C00EA7FB0 /* env.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,19 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		182CA6B622AD171600B57A69 /* taskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskTableViewCell.swift; sourceTree = "<group>"; };
-		182CA6B722AD171600B57A69 /* taskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = taskTableViewCell.xib; sourceTree = "<group>"; };
 		182FC17622A7AFAD00446332 /* PlaybackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackService.swift; sourceTree = "<group>"; };
-		182FC17A22A7DD7A00446332 /* baseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseViewController.swift; sourceTree = "<group>"; };
-		182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = miniPlayerViewController.swift; sourceTree = "<group>"; };
-		182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = miniPlayerViewController.xib; sourceTree = "<group>"; };
 		182FE27122BAA615006410AF /* PlaylistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistManager.swift; sourceTree = "<group>"; };
-		182FF49222BE9E3A0063BF97 /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		183077E523E74AB8000FD2C3 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
-		1835975122A1374000E8C64A /* searchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchTableViewCell.swift; sourceTree = "<group>"; };
-		1835975322A137C100E8C64A /* searchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchTableViewCell.xib; sourceTree = "<group>"; };
 		1835975522A160AF00E8C64A /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
-		18359F5422BC425F0011B35D /* CoreDataInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterfaces.swift; sourceTree = "<group>"; };
+		18359F5422BC425F0011B35D /* CoreDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterface.swift; sourceTree = "<group>"; };
 		183BA542226EFE2F001A5DC7 /* Musicia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musicia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183BA545226EFE2F001A5DC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		183BA54A226EFE2F001A5DC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,13 +64,24 @@
 		183BA559226EFE30001A5DC7 /* MusiciaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusiciaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		183BA55D226EFE30001A5DC7 /* MusiciaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiciaTests.swift; sourceTree = "<group>"; };
 		183BA55F226EFE30001A5DC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18490303228F1E3D001CF937 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		18490305228F1E8A001CF937 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
-		18490307228F2529001CF937 /* ConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterService.swift; sourceTree = "<group>"; };
-		18490309228F31DE001CF937 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		1855157522ABCF260007248C /* tasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasksViewController.swift; sourceTree = "<group>"; };
-		185638AD22AA86F50058AE3B /* previewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewViewController.swift; sourceTree = "<group>"; };
-		18DFC72D22A55E8100749FF6 /* playerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerViewController.swift; sourceTree = "<group>"; };
+		18490307228F2529001CF937 /* ConvertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertService.swift; sourceTree = "<group>"; };
+		1885739B241E5D5100EA7FB0 /* baseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseViewController.swift; sourceTree = "<group>"; };
+		1885739D241E5DDE00EA7FB0 /* playerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playerViewController.swift; sourceTree = "<group>"; };
+		1885739E241E5DDE00EA7FB0 /* previewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previewViewController.swift; sourceTree = "<group>"; };
+		1885739F241E5DDE00EA7FB0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		188573A0241E5DDE00EA7FB0 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		188573A1241E5DDE00EA7FB0 /* tasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tasksViewController.swift; sourceTree = "<group>"; };
+		188573A2241E5DDE00EA7FB0 /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
+		188573AA241E5E7F00EA7FB0 /* miniPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = miniPlayerViewController.xib; sourceTree = "<group>"; };
+		188573AB241E5E7F00EA7FB0 /* miniPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = miniPlayerViewController.swift; sourceTree = "<group>"; };
+		188573B0241E5F8A00EA7FB0 /* searchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchTableViewCell.xib; sourceTree = "<group>"; };
+		188573B1241E5F8A00EA7FB0 /* searchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchTableViewCell.swift; sourceTree = "<group>"; };
+		188573B3241E5F8A00EA7FB0 /* taskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = taskTableViewCell.xib; sourceTree = "<group>"; };
+		188573B4241E5F8A00EA7FB0 /* taskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewCell.swift; sourceTree = "<group>"; };
+		188573BA241E61E000EA7FB0 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		188573BC241E61F600EA7FB0 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		188573BE241E635900EA7FB0 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		188573C0241E642C00EA7FB0 /* env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,27 +124,18 @@
 			isa = PBXGroup;
 			children = (
 				183BA545226EFE2F001A5DC7 /* AppDelegate.swift */,
-				182FC17A22A7DD7A00446332 /* baseViewController.swift */,
-				18490305228F1E8A001CF937 /* PlaylistViewController.swift */,
-				182FF49222BE9E3A0063BF97 /* PlaylistsViewController.swift */,
-				18490303228F1E3D001CF937 /* SearchViewController.swift */,
-				1855157522ABCF260007248C /* tasksViewController.swift */,
-				18DFC72D22A55E8100749FF6 /* playerViewController.swift */,
-				182FC18222A7E3CA00446332 /* miniPlayerViewController.swift */,
-				182FC18322A7E3CA00446332 /* miniPlayerViewController.xib */,
-				185638AD22AA86F50058AE3B /* previewViewController.swift */,
-				18490307228F2529001CF937 /* ConverterService.swift */,
+				1885739A241E5D5100EA7FB0 /* ViewControllers */,
+				188573AE241E5F8A00EA7FB0 /* Views */,
+				188573B9241E61E000EA7FB0 /* Models */,
+				18490307228F2529001CF937 /* ConvertService.swift */,
+				188573BE241E635900EA7FB0 /* SearchService.swift */,
 				182FC17622A7AFAD00446332 /* PlaybackService.swift */,
 				182FE27122BAA615006410AF /* PlaylistManager.swift */,
 				183077E523E74AB8000FD2C3 /* ErrorManager.swift */,
-				18359F5422BC425F0011B35D /* CoreDataInterfaces.swift */,
-				18490309228F31DE001CF937 /* Models.swift */,
+				18359F5422BC425F0011B35D /* CoreDataInterface.swift */,
 				1835975522A160AF00E8C64A /* utils.swift */,
+				188573C0241E642C00EA7FB0 /* env.swift */,
 				183BA549226EFE2F001A5DC7 /* Main.storyboard */,
-				1835975122A1374000E8C64A /* searchTableViewCell.swift */,
-				1835975322A137C100E8C64A /* searchTableViewCell.xib */,
-				182CA6B622AD171600B57A69 /* taskTableViewCell.swift */,
-				182CA6B722AD171600B57A69 /* taskTableViewCell.xib */,
 				183BA54F226EFE30001A5DC7 /* Assets.xcassets */,
 				183BA551226EFE30001A5DC7 /* LaunchScreen.storyboard */,
 				183BA554226EFE30001A5DC7 /* Info.plist */,
@@ -154,6 +151,66 @@
 				183BA55F226EFE30001A5DC7 /* Info.plist */,
 			);
 			path = MusiciaTests;
+			sourceTree = "<group>";
+		};
+		1885739A241E5D5100EA7FB0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1885739D241E5DDE00EA7FB0 /* playerViewController.swift */,
+				188573A2241E5DDE00EA7FB0 /* PlaylistsViewController.swift */,
+				188573A0241E5DDE00EA7FB0 /* PlaylistViewController.swift */,
+				1885739E241E5DDE00EA7FB0 /* previewViewController.swift */,
+				1885739F241E5DDE00EA7FB0 /* SearchViewController.swift */,
+				188573A1241E5DDE00EA7FB0 /* tasksViewController.swift */,
+				1885739B241E5D5100EA7FB0 /* baseViewController.swift */,
+				188573A9241E5E7F00EA7FB0 /* MiniPlayer */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		188573A9241E5E7F00EA7FB0 /* MiniPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				188573AA241E5E7F00EA7FB0 /* miniPlayerViewController.xib */,
+				188573AB241E5E7F00EA7FB0 /* miniPlayerViewController.swift */,
+			);
+			path = MiniPlayer;
+			sourceTree = "<group>";
+		};
+		188573AE241E5F8A00EA7FB0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				188573AF241E5F8A00EA7FB0 /* SearchTableViewCell */,
+				188573B2241E5F8A00EA7FB0 /* TaskTableViewCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		188573AF241E5F8A00EA7FB0 /* SearchTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				188573B0241E5F8A00EA7FB0 /* searchTableViewCell.xib */,
+				188573B1241E5F8A00EA7FB0 /* searchTableViewCell.swift */,
+			);
+			path = SearchTableViewCell;
+			sourceTree = "<group>";
+		};
+		188573B2241E5F8A00EA7FB0 /* TaskTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				188573B3241E5F8A00EA7FB0 /* taskTableViewCell.xib */,
+				188573B4241E5F8A00EA7FB0 /* taskTableViewCell.swift */,
+			);
+			path = TaskTableViewCell;
+			sourceTree = "<group>";
+		};
+		188573B9241E61E000EA7FB0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				188573BA241E61E000EA7FB0 /* Stream.swift */,
+				188573BC241E61F600EA7FB0 /* Search.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,11 +299,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				182CA6B922AD171600B57A69 /* taskTableViewCell.xib in Resources */,
+				188573B7241E5F8A00EA7FB0 /* taskTableViewCell.xib in Resources */,
+				188573AC241E5E7F00EA7FB0 /* miniPlayerViewController.xib in Resources */,
 				183BA553226EFE30001A5DC7 /* LaunchScreen.storyboard in Resources */,
-				1835975422A137C100E8C64A /* searchTableViewCell.xib in Resources */,
+				188573B5241E5F8A00EA7FB0 /* searchTableViewCell.xib in Resources */,
 				183BA550226EFE30001A5DC7 /* Assets.xcassets in Resources */,
-				182FC18522A7E3CA00446332 /* miniPlayerViewController.xib in Resources */,
 				183BA54B226EFE2F001A5DC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,25 +322,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				182FF49322BE9E3A0063BF97 /* PlaylistsViewController.swift in Sources */,
 				182FC17722A7AFAD00446332 /* PlaybackService.swift in Sources */,
-				185638AE22AA86F50058AE3B /* previewViewController.swift in Sources */,
 				182FE27222BAA615006410AF /* PlaylistManager.swift in Sources */,
-				182FC17B22A7DD7A00446332 /* baseViewController.swift in Sources */,
-				1855157622ABCF260007248C /* tasksViewController.swift in Sources */,
-				18490306228F1E8A001CF937 /* PlaylistViewController.swift in Sources */,
 				183BA54E226EFE2F001A5DC7 /* Musicia.xcdatamodeld in Sources */,
-				18490308228F2529001CF937 /* ConverterService.swift in Sources */,
-				1849030A228F31DE001CF937 /* Models.swift in Sources */,
-				18359F5522BC425F0011B35D /* CoreDataInterfaces.swift in Sources */,
-				18490304228F1E3D001CF937 /* SearchViewController.swift in Sources */,
+				18490308228F2529001CF937 /* ConvertService.swift in Sources */,
+				188573A4241E5DDE00EA7FB0 /* previewViewController.swift in Sources */,
+				188573B8241E5F8A00EA7FB0 /* taskTableViewCell.swift in Sources */,
+				18359F5522BC425F0011B35D /* CoreDataInterface.swift in Sources */,
+				188573A7241E5DDE00EA7FB0 /* tasksViewController.swift in Sources */,
+				1885739C241E5D5100EA7FB0 /* baseViewController.swift in Sources */,
+				188573A6241E5DDE00EA7FB0 /* PlaylistViewController.swift in Sources */,
 				183077E623E74AB8000FD2C3 /* ErrorManager.swift in Sources */,
-				182CA6B822AD171600B57A69 /* taskTableViewCell.swift in Sources */,
+				188573AD241E5E7F00EA7FB0 /* miniPlayerViewController.swift in Sources */,
+				188573A5241E5DDE00EA7FB0 /* SearchViewController.swift in Sources */,
+				188573A8241E5DDE00EA7FB0 /* PlaylistsViewController.swift in Sources */,
+				188573A3241E5DDE00EA7FB0 /* playerViewController.swift in Sources */,
+				188573BB241E61E000EA7FB0 /* Stream.swift in Sources */,
 				183BA546226EFE2F001A5DC7 /* AppDelegate.swift in Sources */,
-				1835975222A1374000E8C64A /* searchTableViewCell.swift in Sources */,
-				18DFC72E22A55E8100749FF6 /* playerViewController.swift in Sources */,
-				182FC18422A7E3CA00446332 /* miniPlayerViewController.swift in Sources */,
+				188573BD241E61F600EA7FB0 /* Search.swift in Sources */,
+				188573BF241E635900EA7FB0 /* SearchService.swift in Sources */,
+				188573C1241E642C00EA7FB0 /* env.swift in Sources */,
 				1835975622A160AF00E8C64A /* utils.swift in Sources */,
+				188573B6241E5F8A00EA7FB0 /* searchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

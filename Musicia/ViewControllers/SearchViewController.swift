@@ -52,7 +52,7 @@ class SearchViewController: baseViewController {
     func search(q: String) {
         activityIndicator.startAnimating()
         
-        ConverterService.sharedInstance.search(query: q) { [unowned self] result in
+        SearchService.sharedInstance.search(query: q) { [unowned self] result in
             self.items = result.items
 
             DispatchQueue.main.async {
@@ -67,7 +67,7 @@ class SearchViewController: baseViewController {
         do {
             let searchItem = try SearchItem(dictionary: items![selectedIndex] as! [String : Any])
 
-            ConverterService.sharedInstance.stream(id: searchItem.id, title: titleInputValue)
+            ConvertService.sharedInstance.stream(id: searchItem.id, title: titleInputValue)
         } catch {}
     }
     

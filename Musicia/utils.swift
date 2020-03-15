@@ -34,3 +34,18 @@ extension String {
         self.init(attributedString.string)
     }
 }
+
+func request(urlString: String, completionHandler: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+    let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)!
+    
+    let urlConfig = URLSessionConfiguration.default
+    urlConfig.timeoutIntervalForRequest = 0
+    urlConfig.timeoutIntervalForResource = 0
+    let session = URLSession(configuration: urlConfig)
+    
+    let task = session.dataTask(with: url) {(data, response, error) in
+        completionHandler(data, error)
+    }
+
+    task.resume()
+}
