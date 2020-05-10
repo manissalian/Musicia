@@ -69,6 +69,7 @@ extension PlaylistViewController: UITableViewDelegate {
         }
         PlaylistManager.sharedInstance.loadPlaylist(items: mainPlaylistItems, activeItemIndex: indexPath.row)
         
+        playerVC.modalPresentationStyle = .fullScreen
         self.present(playerVC, animated: true)
     }
 }

@@ -63,6 +63,7 @@ class miniPlayerViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let playerVC = storyBoard.instantiateViewController(withIdentifier: "player") as! playerViewController
         
+        playerVC.modalPresentationStyle = .fullScreen
         parentVC?.present(playerVC, animated: true)
     }
     
